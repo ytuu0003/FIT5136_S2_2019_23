@@ -2,16 +2,17 @@ import java.util.Scanner;
 
 public class Display {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Display dp = new Display();
         dp.login();
-    }
-    public void login(){
+    }*/
+    public String login(){
         boolean flag = true;
         Scanner sc = new Scanner(System.in);
         char choice = 'D';
         String email = "";
         String pw = "";
+        String returnString = "";
         while(flag) {
             System.out.println("Welcome to Prime Event System!");
             System.out.println("Please login first.(Select your user identity type)");
@@ -22,7 +23,7 @@ public class Display {
             System.out.println("E. Exit system");
 
             choice = sc.nextLine().charAt(0);
-
+            flag = false;
 
             switch(choice){
                 case 'A': case 'a':
@@ -31,10 +32,12 @@ public class Display {
                     System.out.println("Please enter user password (Input 0000 if you forget your password):");
                     pw = sc.nextLine();
                     if (pw.equals("0000")){
-                        System.out.println("Reset new password:");
-                        pw = inputPassword();
+                        pw = forgetPassword();
+                        //returnString += "0 "; //reset password flag
                     }
-                    customerMenu(email);
+                    returnString += "A ";
+                    returnString += email + " " + pw;
+                    //customerMenu(email);
                     break;
                 case 'B': case 'b':
                     System.out.println("Please enter property owner user ID (Your Email address):");
@@ -42,30 +45,52 @@ public class Display {
                     System.out.println("Please enter user password (Input 0000 if you forget your password):");
                     pw = sc.nextLine();
                     if (pw.equals("0000")){
-                        System.out.println("Reset new password:");
-                        pw = inputPassword();
-                    }
-                    ownerMenu(email);
+                        pw = forgetPassword();
+                        //returnString += "0 "; //reset password flag
+                        }
+                    //ownerMenu(email);
+                    returnString += "B ";
+                    returnString += email + " " + pw;
                     break;
                 case 'C': case 'c':
                     System.out.println("Please enter administriter ID:");
                     email = sc.nextLine();
                     System.out.println("Please enter user password:");
                     pw = sc.nextLine();
+                    returnString += "C ";
+                    returnString += email + " " + pw;
                     break;
                 case 'D': case 'd':
+                    System.out.println("Please enter the account type you want to register");
+                    System.out.println("('C' for customer or 'O' for property owner):");
+                    String userType = sc.nextLine();
+                    if (userType.charAt(0) == 'C' || userType.charAt(0) == 'c')
+                        returnString += "1 ";
+                    else if (userType.charAt(0) == 'O' || userType.charAt(0) == 'o')
+                        returnString += "2 ";
+                    else{
+                        System.out.println("Invalid input!");
+                        flag = true;
+                        break;
+                    }
                     System.out.println("Please enter user ID (Your Email address):");
                     email = sc.nextLine();
                     pw = inputPassword();
+                    returnString += "D ";
+                    returnString += email + " " + pw;
                     break;
                 case 'E': case 'e':
                     System.out.println("Exit...Goodbye!");
-                    flag = false;
+                    //flag = false;
+                    returnString += "E ";
                     break;
                 default:
                     System.out.println("Invalid input. Please select again:");
+                    flag = true;
+                    break;
             }
         }
+        return returnString;
     }
 
     private String inputPassword() {
@@ -87,6 +112,12 @@ public class Display {
                 System.out.println("The passwords entered are inconsistent. Please try again:");
         }
         return pw;
+    }
+    public String forgetPassword(){
+        System.out.println("Reset new password:");
+        String newPwd = "";
+        newPwd = inputPassword();
+        return newPwd;
     }
     public void ownerMenu(String email){
         Scanner sc = new Scanner(System.in);
@@ -453,5 +484,8 @@ public class Display {
         System.out.println("Catering: No");
         System.out.println("Photo: library.jpg");
         System.out.println("Capacity: 50");
+    }
+    public void displayMessage(String message){
+        System.out.println(message);
     }
 }
