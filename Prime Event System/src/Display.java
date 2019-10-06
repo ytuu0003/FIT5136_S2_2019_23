@@ -76,7 +76,7 @@ public class Display {
                     System.out.println("Please enter user ID (Your Email address):");
                     email = sc.nextLine();
                     pw = inputPassword();
-                    returnString += "D";
+                    returnString += "D,";
                     returnString += email + "," + pw;
                     break;
                 case 'E': case 'e':
@@ -233,6 +233,7 @@ public class Display {
                 break;
         }
     }
+
 
     public void createHall() {
         String name = "";
@@ -487,5 +488,22 @@ public class Display {
     }
     public void displayMessage(String message){
         System.out.println(message);
+    }
+    public String[] askRegisterInfo(String userType){
+        String[] registerInfo = new String[5];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your first name:");
+        registerInfo[0] = sc.nextLine();
+        System.out.println("Please enter your last name:");
+        registerInfo[1] = sc.nextLine();
+        System.out.println("Please enter your address:");
+        registerInfo[2] = sc.nextLine();
+        System.out.println("Please enter your phone number:");
+        registerInfo[3] = sc.nextLine();
+        if (userType.equals("1")) {
+            System.out.println("Please enter your Customer type:");
+            registerInfo[4] = sc.nextLine();
+        }
+        return registerInfo;
     }
 }

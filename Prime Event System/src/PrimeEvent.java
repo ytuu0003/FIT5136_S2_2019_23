@@ -22,8 +22,10 @@ public class PrimeEvent {
         while(!result) {
             loginInfo = sc.login();
             String[] details = loginInfo.split(",");
-            if (details[0].equals("1") || details[0].equals("2"))
+            if (details[0].equals("1") || details[0].equals("2")) {
                 register(details);
+                result = true;
+            }
             else if (details[0].equals("A")){
                 result = checkCustomersValidation(details[1], details[2], readCustomers());
             }
@@ -73,8 +75,23 @@ public class PrimeEvent {
     }
 
     public void register(String[] details){
-
+        Display ui = new Display();
+        //System.out.println(details[2] + "," +details[3]);
+        String[] details2 = new String[5];
+        if (details[0].equals("1")){
+            //System.out.println(ui.askRegisterInfo("1")[4]);
+            details2 = ui.askRegisterInfo("1");
+            customer = new Customer(details[2],details[3],details2[0],details2[1],details2[2],details2[3],details2[4]);
+            writeCustomers();
+        }
+        else{
+            details2 = ui.askRegisterInfo("2");
+            owner = new Owner(details[2],details[3],details2[0],details2[1],details2[2],details2[3]);
+            writeOwner();
+        }
+        ui.displayMessage("Welcome, " + details[2] + "!");
     }
+
     public ArrayList<Customer> readCustomers(){
         ArrayList<Customer> customers = new ArrayList<>();
         Customer cus1 = new Customer("101","123","Lucy","Huang","Caulfield","10021","");
@@ -91,5 +108,15 @@ public class PrimeEvent {
         owners.add(owner1);
         owners.add(owner2);
         return owners;
+    }
+    public void writeCustomers(){
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers = readCustomers();
+        customers.add(customer);
+    }
+    public void writeOwner(){
+        ArrayList<Owner> owners = new ArrayList<>();
+        owners = readOwners();
+        owners.add(owner);
     }
 }
