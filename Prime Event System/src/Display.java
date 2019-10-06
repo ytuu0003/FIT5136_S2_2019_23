@@ -35,8 +35,8 @@ public class Display {
                         pw = forgetPassword();
                         //returnString += "0 "; //reset password flag
                     }
-                    returnString += "A ";
-                    returnString += email + " " + pw;
+                    returnString += "A,";
+                    returnString += email + "," + pw;
                     //customerMenu(email);
                     break;
                 case 'B': case 'b':
@@ -49,25 +49,25 @@ public class Display {
                         //returnString += "0 "; //reset password flag
                         }
                     //ownerMenu(email);
-                    returnString += "B ";
-                    returnString += email + " " + pw;
+                    returnString += "B,";
+                    returnString += email + "," + pw;
                     break;
                 case 'C': case 'c':
                     System.out.println("Please enter administriter ID:");
                     email = sc.nextLine();
                     System.out.println("Please enter user password:");
                     pw = sc.nextLine();
-                    returnString += "C ";
-                    returnString += email + " " + pw;
+                    returnString += "C,";
+                    returnString += email + "," + pw;
                     break;
                 case 'D': case 'd':
                     System.out.println("Please enter the account type you want to register");
                     System.out.println("('C' for customer or 'O' for property owner):");
                     String userType = sc.nextLine();
                     if (userType.charAt(0) == 'C' || userType.charAt(0) == 'c')
-                        returnString += "1 ";
+                        returnString += "1,";
                     else if (userType.charAt(0) == 'O' || userType.charAt(0) == 'o')
-                        returnString += "2 ";
+                        returnString += "2,";
                     else{
                         System.out.println("Invalid input!");
                         flag = true;
@@ -76,8 +76,8 @@ public class Display {
                     System.out.println("Please enter user ID (Your Email address):");
                     email = sc.nextLine();
                     pw = inputPassword();
-                    returnString += "D ";
-                    returnString += email + " " + pw;
+                    returnString += "D";
+                    returnString += email + "," + pw;
                     break;
                 case 'E': case 'e':
                     System.out.println("Exit...Goodbye!");

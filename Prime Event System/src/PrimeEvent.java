@@ -21,15 +21,15 @@ public class PrimeEvent {
         String loginInfo = "";
         while(!result) {
             loginInfo = sc.login();
-            String[] details = loginInfo.split(" ");
-
-            if (details[0] == "1" || details[0] == "2")
+            String[] details = loginInfo.split(",");
+            if (details[0].equals("1") || details[0].equals("2"))
                 register(details);
-            else if (details[0] == "A")
+            else if (details[0].equals("A")){
                 result = checkCustomersValidation(details[1], details[2], readCustomers());
-            else if (details[0] == "B")
+            }
+            else if (details[0].equals("B"))
                 result = checkOwnerValidation(details[1], details[2], readOwners());
-            else if (details[0] == "C")
+            else if (details[0].equals("C"))
                 result = checkAdminValidation(details[1], details[2]);
             if (result == true)
                 sc.displayMessage("Login successfully!");
