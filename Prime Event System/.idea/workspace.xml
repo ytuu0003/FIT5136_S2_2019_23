@@ -48,7 +48,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrimeEvent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="PrimeEvent" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="PrimeEvent" />
       <module name="Prime Event System" />
       <method v="2">
@@ -57,7 +57,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PrimeEvent" />
         <item itemvalue="Application.Display" />
       </list>
     </recent_temporary>
