@@ -14,7 +14,13 @@ public class Display {
         String pw = "";
         String returnString = "";
         while(flag) {
-            displayLoginMenu();
+            System.out.println("Welcome to Prime Event System!");
+            System.out.println("Please login first.(Select your user identity type)");
+            System.out.println("A. Customer");
+            System.out.println("B. Property Owner");
+            System.out.println("C. Administrator");
+            System.out.println("D. Don't have an account yet.(Register now!)");
+            System.out.println("E. Exit system");
 
             choice = sc.nextLine().charAt(0);
             flag = false;
@@ -85,16 +91,6 @@ public class Display {
             }
         }
         return returnString;
-    }
-
-    private void displayLoginMenu(){
-        System.out.println("Welcome to Prime Event System!");
-        System.out.println("Please login first.(Select your user identity type)");
-        System.out.println("A. Customer");
-        System.out.println("B. Property Owner");
-        System.out.println("C. Administrator");
-        System.out.println("D. Don't have an account yet.(Register now!)");
-        System.out.println("E. Exit system");
     }
 
     private String inputPassword() {

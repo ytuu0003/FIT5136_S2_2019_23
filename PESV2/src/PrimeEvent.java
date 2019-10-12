@@ -15,8 +15,6 @@ public class PrimeEvent {
         system.login();
     }
 
-    public void testMethod(){}
-
     public void login(){
         boolean result = false;
         Display sc = new Display();
@@ -49,7 +47,6 @@ public class PrimeEvent {
         admin = new Admin("admin","123456");
         return result;
     }
-
     public boolean checkCustomersValidation(String id, String pwd, ArrayList<Customer> customers){
         boolean result = false;
         for (Customer e : customers) {
