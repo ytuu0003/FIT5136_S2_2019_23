@@ -41,7 +41,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.PrimeEvent">
-    <configuration name="Display" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Display" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Display" />
       <module name="Prime Event System" />
       <method v="2">
@@ -55,11 +55,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Display" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
