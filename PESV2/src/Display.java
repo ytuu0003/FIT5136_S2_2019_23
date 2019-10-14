@@ -1,96 +1,146 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Display {
+    private PrimeEvent controller;
+    private String userType = null;
+    public static void main(String[] args) {
+        Display boundary = new Display();
+        boundary.setController();
+        boolean flag = true;
+        while(flag){
+            boundary.displayLoginMenu();
+            if (boundary.userType.equals("customer"))
+                boundary.customerMenu();
+            else if (boundary.userType.equals("owner"))
+                boundary.ownerMenu();
 
-    /*public static void main(String[] args) {
-        Display dp = new Display();
-        dp.login();
-    }*/
-    public String login(){
+        }
+    }
+
+    private void setController(){
+        controller = new PrimeEvent();
+    }
+
+    public void displayLoginMenu(){
         boolean flag = true;
         Scanner sc = new Scanner(System.in);
         char choice = 'D';
         String email = "";
         String pw = "";
-        String returnString = "";
+
         while(flag) {
-            System.out.println("Welcome to Prime Event System!");
-            System.out.println("Please login first.(Select your user identity type)");
-            System.out.println("A. Customer");
-            System.out.println("B. Property Owner");
-            System.out.println("C. Administrator");
-            System.out.println("D. Don't have an account yet.(Register now!)");
-            System.out.println("E. Exit system");
-
+            loginMenu();
             choice = sc.nextLine().charAt(0);
-            flag = false;
-
-            switch(choice){
-                case 'A': case 'a':
+            switch (choice) {
+                case 'A':
+                case 'a':
                     System.out.println("Please enter customer user ID (Your Email address):");
                     email = sc.nextLine();
                     System.out.println("Please enter user password (Input 0000 if you forget your password):");
                     pw = sc.nextLine();
-                    if (pw.equals("0000")){
+                    if (pw.equals("0000"))
                         pw = forgetPassword();
-                        //returnString += "0 "; //reset password flag
-                    }
-                    returnString += "A,";
-                    returnString += email + "," + pw;
-                    //customerMenu(email);
+                    else
+                        if(controller.login("customer", email, pw)){
+                            System.out.println("Welcome, " + email);
+                            flag = false;
+                            userType = "customer";
+                        }
+                        else
+                            System.out.println("User ID or password error, please try again.\n");
                     break;
-                case 'B': case 'b':
+                case 'B':
+                case 'b':
                     System.out.println("Please enter property owner user ID (Your Email address):");
                     email = sc.nextLine();
                     System.out.println("Please enter user password (Input 0000 if you forget your password):");
                     pw = sc.nextLine();
-                    if (pw.equals("0000")){
+                    if (pw.equals("0000"))
                         pw = forgetPassword();
-                        //returnString += "0 "; //reset password flag
+                    else
+                        if(controller.login("owner", email, pw)){
+                            System.out.println("Welcome, " + email);
+                            flag = false;
+                            userType = "owner";
                         }
-                    //ownerMenu(email);
-                    returnString += "B,";
-                    returnString += email + "," + pw;
+                        else
+                            System.out.println("User ID or password error, please try again.\n");
                     break;
-                case 'C': case 'c':
-                    System.out.println("Please enter administriter ID:");
+                case 'C':
+                case 'c':
+                    System.out.println("Please enter admin ID:");
                     email = sc.nextLine();
                     System.out.println("Please enter user password:");
                     pw = sc.nextLine();
-                    returnString += "C,";
-                    returnString += email + "," + pw;
+                    if(controller.login("admin", email, pw)){
+                        System.out.println("Welcome, " + email);
+                        flag = false;
+                        userType = "admin";
+                    }
+                    else
+                        System.out.println("User ID or password error, please try again.\n");
                     break;
-                case 'D': case 'd':
+                case 'D':
+                case 'd':
                     System.out.println("Please enter the account type you want to register");
                     System.out.println("('C' for customer or 'O' for property owner):");
                     String userType = sc.nextLine();
-                    if (userType.charAt(0) == 'C' || userType.charAt(0) == 'c')
-                        returnString += "1,";
-                    else if (userType.charAt(0) == 'O' || userType.charAt(0) == 'o')
-                        returnString += "2,";
-                    else{
+                    String[] newUserInfo;
+                    if (userType.charAt(0) == 'C' || userType.charAt(0) == 'c') {
+                        newUserInfo = askRegisterInfo("customer");
+                        controller.register("customer", newUserInfo);
+                        flag = false;
+                    }
+                    else if (userType.charAt(0) == 'O' || userType.charAt(0) == 'o') {
+                        newUserInfo = askRegisterInfo("owner");
+                        controller.register("owner", newUserInfo);
+                        flag = false;
+                    }
+                    else {
                         System.out.println("Invalid input!");
-                        flag = true;
                         break;
                     }
-                    System.out.println("Please enter user ID (Your Email address):");
-                    email = sc.nextLine();
-                    pw = inputPassword();
-                    returnString += "D,";
-                    returnString += email + "," + pw;
                     break;
-                case 'E': case 'e':
+                case 'E':
+                case 'e':
                     System.out.println("Exit...Goodbye!");
-                    //flag = false;
-                    returnString += "E ";
+                    flag = false;
                     break;
                 default:
                     System.out.println("Invalid input. Please select again:");
-                    flag = true;
                     break;
             }
         }
-        return returnString;
+    }
+
+    public String askForInput(String message){
+        Scanner sc = new Scanner(System.in);
+        String returnMessage = "";
+        System.out.println(message);
+        returnMessage = sc.nextLine();
+        return returnMessage;
+    }
+
+    public String[] askRegisterInfo(String userType){
+        Scanner sc = new Scanner(System.in);
+        String[] registerInfo = new String[7];
+        System.out.println("Please enter user ID (Your Email address):");
+        registerInfo[0] = sc.nextLine();
+        registerInfo[1] = inputPassword();
+        System.out.println("Please enter your first name:");
+        registerInfo[2] = sc.nextLine();
+        System.out.println("Please enter your last name:");
+        registerInfo[3] = sc.nextLine();
+        System.out.println("Please enter your address:");
+        registerInfo[4] = sc.nextLine();
+        System.out.println("Please enter your phone number:");
+        registerInfo[5] = sc.nextLine();
+        if (userType.equals("customer")) {
+            System.out.println("Please enter your Customer type:");
+            registerInfo[6] = sc.nextLine();
+        }
+        return registerInfo;
     }
 
     private String inputPassword() {
@@ -119,9 +169,10 @@ public class Display {
         newPwd = inputPassword();
         return newPwd;
     }
-    public void ownerMenu(String email){
+
+    public void ownerMenu(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello, " + email + "!");
+        System.out.println("Hello, property owner!");
         boolean flag = true;
         char choice = '0';
         while(flag) {
@@ -152,7 +203,7 @@ public class Display {
                     System.out.println("/*Add a discount.*/");
                     break;
                 case '5':
-                    System.out.println("/*View requests.*/");
+                    controller.provideAQuotaton();
                     break;
                 case '6':
                     System.out.println("/*View payment here.*/");
@@ -164,7 +215,7 @@ public class Display {
                     break;
                 case '9':
                     flag = false;
-                    logout(email);
+                    logout();
                     break;
             }
         }
@@ -184,6 +235,7 @@ public class Display {
         else if (choice == '2')
             editHall('2');
     }
+
     public void editHall(char num) {
         System.out.println("Please select the item you want to modify (please input the numbers before items)：");
         System.out.println("1. Hall Name");
@@ -271,7 +323,7 @@ public class Display {
         yn = sc.nextLine();
         if (yn == "Yes" || yn == "yes" || yn == "y" || yn == "Y") {
             Hall newHall = new Hall(name, desc, addr, cont, cate, photo, capacity);
-            System.out.print(newHall.display());
+            System.out.print(newHall.toString());
         }
         else
             System.out.println("Exit creating process..");
@@ -279,9 +331,9 @@ public class Display {
         sc.nextLine();
     }
 
-    public void customerMenu(String email){
+    public void customerMenu(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello, " + email + "!");
+        System.out.println("Hello, customer!");
         boolean flag = true;
         char choice = '0';
         while(flag) {
@@ -311,7 +363,7 @@ public class Display {
                     System.out.println("/*View booking here.*/");
                     break;
                 case '5':
-                    bookAHall();
+                    controller.bookAHall();
                     break;
                 case '6':
                     System.out.println("/*Update account information here*/");
@@ -321,7 +373,7 @@ public class Display {
                     break;
                 case '8':
                     flag = false;
-                    logout(email);
+                    logout();
                     break;
             }
         }
@@ -342,32 +394,29 @@ public class Display {
             sc.nextLine();
         }
     }
-    public void logout(String email){
-        System.out.println("Goodbye, " + email + ".");
+    public void logout(){
+        System.out.println("Goodbye.");
     }
     public void searchHall(){
         Scanner sc = new Scanner(System.in);
         System.out.println("===================Search Hall==================");
         System.out.println("Please input hall name:");
-        String name = sc.nextLine();
-        if (name.equalsIgnoreCase("Monash"))
-        {
-            testDisplaySampleHall1();
-            testDisplaySampleHall2();
-        }
-        else if (name.equalsIgnoreCase("monash sports center")){
-            testDisplaySampleHall1();
-        }
-        System.out.println("Request a quotation now? [Y/N]");
-        char input = sc.nextLine().charAt(0);
-        if (input == 'Y' || input == 'y'){
-            requestQuot();
-        }
+        String hallName = sc.nextLine();
+        String hallsFound = "";
+        hallsFound = controller.searchHalls(hallName);
+        if(hallsFound.isEmpty())
+            displayMessage("Hall " + hallName + " cannot found!");
         else {
-            System.out.println("No quotation Requestion needed. Return home page...");
-            System.out.println("Enter to continue....");
-            sc.nextLine();
+            displayMessage(hallsFound);
+            sendQuotation();
         }
+
+    }
+    public void sendQuotation(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("/*Send quotation here*/");
+        System.out.println("Do you want to send a quotation?");
+        sc.nextLine();
     }
     public void bookAHall() {
         Scanner sc = new Scanner(System.in);
@@ -489,21 +538,14 @@ public class Display {
     public void displayMessage(String message){
         System.out.println(message);
     }
-    public String[] askRegisterInfo(String userType){
-        String[] registerInfo = new String[5];
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your first name:");
-        registerInfo[0] = sc.nextLine();
-        System.out.println("Please enter your last name:");
-        registerInfo[1] = sc.nextLine();
-        System.out.println("Please enter your address:");
-        registerInfo[2] = sc.nextLine();
-        System.out.println("Please enter your phone number:");
-        registerInfo[3] = sc.nextLine();
-        if (userType.equals("1")) {
-            System.out.println("Please enter your Customer type:");
-            registerInfo[4] = sc.nextLine();
-        }
-        return registerInfo;
+
+    private void loginMenu(){
+        System.out.println("Welcome to Prime Event System!");
+        System.out.println("Please login first.(Select your user identity type)");
+        System.out.println("A. Customer");
+        System.out.println("B. Property Owner");
+        System.out.println("C. Administrator");
+        System.out.println("D. Don't have an account yet.(Register now!)");
+        System.out.println("E. Exit system");
     }
 }

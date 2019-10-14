@@ -10,7 +10,14 @@ public class Customer extends User {
         return customerType;
     }
 
+    @Override
+    public String getUserId() {
+        return super.getUserId();
+    }
+
     public void setCustomerType(String customerType) {
         this.customerType = customerType;
     }
+
+
 }

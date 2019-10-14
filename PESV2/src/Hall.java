@@ -74,7 +74,7 @@ public class Hall {
         capacity = newCapacity;
     }
 
-    public String display(){
+    public String toString(){
         String information = "\nHall Name: " + hallName + "\nDescription: " + desc
                 + "\nAddress: " + fullAddress + "\nContact Info: " + contact + "\nCatering Provided: "
                 + caterService + "\nPhoto Link: " + photoLink + "\nCapacity: " + capacity;
