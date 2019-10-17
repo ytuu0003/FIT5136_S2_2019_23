@@ -19,5 +19,12 @@ public class Customer extends User {
         this.customerType = customerType;
     }
 
+    public String toStringItem(){
+        StringBuffer dm = new StringBuffer();
+        dm.append(super.toStringItem());
+        dm.append(",");
+        dm.append(customerType);
+        return dm.toString();
+    }
 
 }

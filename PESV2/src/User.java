@@ -54,4 +54,19 @@ public class User {
         this.phoneNo = phoneNo;
     }
 
+    public String toStringItem(){
+        StringBuffer dm = new StringBuffer();
+        dm.append(userId);
+        dm.append(",");
+        dm.append(password);
+        dm.append(",");
+        dm.append(firstName);
+        dm.append(",");
+        dm.append(lastName);
+        dm.append(",");
+        dm.append(address);
+        dm.append(",");
+        dm.append(phoneNo);
+        return dm.toString();
+    }
 }

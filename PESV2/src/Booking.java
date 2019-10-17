@@ -122,13 +122,28 @@ public class Booking {
         displayMessage += "BookingID: " + bookingID + "\n";
         displayMessage += "CustomerID: " + customerId + "\n";
         displayMessage += "HallID: " + hallId + "\n";
-        displayMessage += "Purpose: " + customerId + "\n";
+        displayMessage += "Purpose: " + purpose + "\n";
         displayMessage += "Attendance: " + attendance + "\n";
         displayMessage += "Date and Time: " + dateAndTime + "\n";
         displayMessage += "Catering: " + catering + "\n";
         displayMessage += "Deposit: " + deposit + "\n";
         displayMessage += "Total Price: " + totalPrice + "\n";
         displayMessage += "Review: " + review + "\n";
+
+        return displayMessage;
+    }
+    public String toStringItrem() {
+        String displayMessage = "";
+        displayMessage += bookingID + ",";
+        displayMessage += customerId + ",";
+        displayMessage += hallId + ",";
+        displayMessage += purpose + ",";
+        displayMessage += attendance + ",";
+        displayMessage += dateAndTime + ",";
+        displayMessage += catering + ",";
+        displayMessage += deposit + ",";
+        displayMessage += totalPrice + ",";
+        displayMessage += review;
 
         return displayMessage;
     }

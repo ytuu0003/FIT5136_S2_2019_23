@@ -1,0 +1,2 @@
+233,111,Zen Building,good place,cbd,123456789,Birthday,false,asdf,100,30.9
+213,111,monash sports center,good place,Clayton,123456789,Birthday,true,dsgffg,100,200.0
