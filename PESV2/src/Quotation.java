@@ -58,13 +58,30 @@ public class Quotation {
 
     public String displayQuotationInfo(){
         String info = "";
-        info = "Quotation Info: " + quotationInfo + "\nOwner ID: " + ownerId + "\nHall ID: " + hallId + "\nCustomer ID: "
+        info = formatQuotationInfo() + "\nOwner ID: " + ownerId + "\nHall ID: " + hallId + "\nCustomer ID: "
                 + customerId + "\nState: " + state;
         return info;
     }
 
     public String[] splitQuotationInfo(){
         return quotationInfo.split(",",6);
+    }
+
+    public String formatQuotationInfo(){
+        String quotationInfoFormat = "";
+        String[] quotationFields = new String[6];
+        quotationFields = quotationInfo.split(",",6);
+        quotationInfoFormat += "Attendance: ";
+        quotationInfoFormat = quotationInfoFormat + quotationFields[0] + "\n";
+        quotationInfoFormat += "Catering: ";
+        quotationInfoFormat = quotationInfoFormat + quotationFields[1] + "\n";
+        quotationInfoFormat += "Date and Time: ";
+        quotationInfoFormat = quotationInfoFormat + quotationFields[2] + "\n";
+        quotationInfoFormat += "Event Type: ";
+        quotationInfoFormat = quotationInfoFormat + quotationFields[4];
+
+        return quotationInfoFormat;
+
     }
 
 

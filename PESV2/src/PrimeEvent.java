@@ -150,8 +150,8 @@ public class PrimeEvent {
                 }
             }
             message += "================Quotation Info==================\n";
-            message += quotationInfo;
-            message += "Price: ";
+            message += listOfQuotations.get(indexSlot.get(choice - 1)).displayQuotationInfo();
+            message += "\nPrice: ";
             message = message + listOfQuotations.get(indexSlot.get(choice - 1)).getPriceList(0) + "\n";
             message += "Discount Percent: ";
             message = message + listOfQuotations.get(indexSlot.get(choice - 1)).getPriceList(1) + "\n";
