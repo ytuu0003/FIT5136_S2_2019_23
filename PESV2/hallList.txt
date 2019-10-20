@@ -1,4 +1,0 @@
-233,Zen Building,211,good place,cbd,123456789,All,false,asdf,50,309.0
-213,monash sports center,211,good place,clayton,123456789,All,true,dsgffg,1000,200.0
-214,Star Hotal,212,expensive but worthy,cbd,23412334,All,true,safdgdssd,120,8000.0
-215,Pegasus Apartment Hotel,213,cute logo,Bechett Street,55434567,All,true,fkjhig,55,400.0

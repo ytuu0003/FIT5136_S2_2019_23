@@ -1,0 +1,6 @@
+101,123,Lucy,Huang,Caulfield,10021,null
+102,123,Hazel,Li,CBD,10022,null
+103,123,Lucas,Allen,Caulfield,10023,senior
+104,123,Tracy,Wilson,CBD,10024,null
+cici@gmail.com,123,Cici,Liu,clayton,04200012333,
+alex,123,alex,li,sfs,312421,

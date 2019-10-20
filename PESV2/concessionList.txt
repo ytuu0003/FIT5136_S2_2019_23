@@ -1,2 +1,0 @@
-senior,0.9
-student,0.8
