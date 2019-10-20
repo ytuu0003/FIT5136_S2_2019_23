@@ -6,6 +6,13 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * This DataHandler Class represents a data handler object in the system.
+ * It used to generate a data handler object to read and write data between system and file.
+ *
+ * @author Tushan Tu, Yaohan Li and Xinyue Huang
+ * @version 1.0 (19 Oct 2019)
+ * */
 public class DataHandler {
     ArrayList<Customer> listOfCustomers = new ArrayList<Customer>();
     ArrayList<Owner> listOfOwners = new ArrayList<Owner>();
@@ -15,48 +22,14 @@ public class DataHandler {
     ArrayList<Discount> listOfDiscounts = new ArrayList<Discount>();
     ArrayList<Concession> listOfConcessions = new ArrayList<Concession>();
 
-//    public String readFile(String fileName){
-//        String fileInfo = "";
-//        return fileInfo;
-//    }
-//    public void writeToFile(String fileName, String message){
-//
-//    }
-//
-//    public void testData(){
-//        Customer cus1 = new Customer("101","123","Lucy","Huang","Caulfield","10021","");
-//        Customer cus2 = new Customer("102","111","Hazel","Li","CBD","10022","");
-//        listOfCustomers.add(cus1);
-//        listOfCustomers.add(cus2);
-//        Owner owner1 = new Owner("201","123","Alva","Ni","aaa","10023");
-//        Owner owner2 = new Owner("202","111","Kenny","Li","CBD","10024");
-//        listOfOwners.add(owner1);
-//        listOfOwners.add(owner2);
-//        Booking booking1 = new Booking("001","101","hall1","purpose",25,"191111",true,100.00,800.00,"");
-//        Booking booking2 = new Booking("002","102","hall2","purpose2",25,"191112",true,100.00,800.00,"");
-//        listOfBookings.add(booking1);
-//        listOfBookings.add(booking2);
-//        Hall hall1 = new Hall("hall1","desc1","addr1","12323123",true,"wefaf.com",43);
-//        Hall hall2 = new Hall("hall2","desc2","addr2","12323123",false,"wefaf.com",25);
-//        Hall hall3 = new Hall("hall3","desc3","addr3","12323123",true,"wefaf.com",10);
-//        Hall hall4 = new Hall("hall4","desc4","addr4","12323123",false,"wefaf.com",100);
-//        listOfHalls.add(hall1);
-//        listOfHalls.add(hall2);
-//        listOfHalls.add(hall3);
-//        listOfHalls.add(hall4);
-//        Quotation q1 = new Quotation();
-//        q1.testFile1();
-//        listOfQuotations.add(q1);
-//        Quotation q2 = new Quotation();
-//        q2.testFile2();
-//        listOfQuotations.add(q2);
-//        System.out.println(q1.displayQuotationInfo());
-//    }
-
-   // public ArrayList<Hall> getListOfHalls(){
-     //   return listOfHalls;
-  //  }
-//-----------------------------Yushan Tu-------------------------------
+    /**
+     * Checks whether the particular customer exist in the file or not and the password is correct or not
+     *
+     * @param id The id of this customer.
+     * @param pwd The password of this customer.
+     *
+     * @return this customer object if correct otherwise return null.
+     * */
     public Customer validateCustomer(String id, String pwd){
         for (Customer c : listOfCustomers){
             if (c.getUserId().equals(id))
@@ -66,6 +39,14 @@ public class DataHandler {
         return null;
     }
 
+    /**
+     * Checks whether the particular owner exist in the file or not and the password is correct or not
+     *
+     * @param id The id of this owner.
+     * @param pwd The password of this owner.
+     *
+     * @return this owner object if correct otherwise return null.
+     * */
     public Owner validateOwner(String id, String pwd){
         for (Owner o : listOfOwners){
             if (o.getUserId().equals(id))
@@ -75,50 +56,95 @@ public class DataHandler {
         return null;
     }
 
+    /**
+     * Adds a particular customer into the list of customer objects
+     *
+     * @param customer The customer which needed to add into the list.
+     *
+     * */
     public void addCustomer(Customer customer){
         listOfCustomers.add(customer);
     }
 
+    /**
+     * Adds a particular owner into the list of owner objects
+     *
+     * @param owner The owner which needed to add into the list.
+     *
+     * */
     public void addOwner(Owner owner){
         listOfOwners.add(owner);
     }
 
+    /**
+     * Adds a particular booking into the list of booking objects
+     *
+     * @param newBooking The booking which needed to add into the list.
+     *
+     * */
     public void addBooking(Booking newBooking){
         listOfBookings.add(newBooking);
     }
-    //----------------------------Yushan Tu-------------------------------
+
+    /**
+     * Gets an array list of customer objectives
+     * @return an array list of customer objectives
+     * */
     public ArrayList<Customer> getListOfCustomers(){
         return  listOfCustomers;
     }
 
+    /**
+     * Gets an array list of owner objectives
+     * @return an array list of owner objectives
+     * */
     public ArrayList<Owner> getListOfOwner() {
         return listOfOwners;
     }
 
+    /**
+     * Gets an array list of hall objectives
+     * @return an array list of hall objectives
+     * */
     public ArrayList<Hall> getListOfHalls() {
         return listOfHalls;
     }
 
+    /**
+     * Gets an array list of booking objectives
+     * @return an array list of booking objectives
+     * */
     public ArrayList<Booking> getListOfBookings() {
         return listOfBookings;
     }
 
+    /**
+     * Gets an array list of quotation objectives
+     * @return an array list of quotation objectives
+     * */
     public ArrayList<Quotation> getListOfQuotations() {
         return listOfQuotations;
     }
 
+    /**
+     * Gets an array list of discount objectives
+     * @return an array list of discount objectives
+     * */
     public ArrayList<Discount> getListOfDiscounts() {
         return listOfDiscounts;
     }
 
+    /**
+     * Gets an array list of concession objectives
+     * @return an array list of concession objectives
+     * */
     public ArrayList<Concession> getListOfConcessions() {
         return listOfConcessions;
     }
 
-    public void setListOfCustomers(ArrayList<Customer> customerArrayList) {
-        listOfCustomers = customerArrayList;
-    }
-
+    /**
+     * Reads the Booking List from file into system and generate an arrayList of booking objects.
+     * */
     public void readBookingFile() throws FileNotFoundException {
         FileReader inputFile = new FileReader("bookingList.txt");
         Scanner parser = new Scanner(inputFile);
@@ -130,7 +156,8 @@ public class DataHandler {
             String HID = info[2];
             String purp = info[3];
             int atted = Integer.parseInt(info[4]);
-            String dnt = info[5];
+            //*************************yushan tu****************************
+            int dnt = Integer.parseInt(info[5]);
             boolean cat = Boolean.parseBoolean(info[6]);
             double dp = Double.parseDouble(info[7]);
             double tp = Double.parseDouble(info[8]);
@@ -140,13 +167,16 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the Customer List from file into system and generate an arrayList of customer objects.
+     * */
     public void readCustomerFile() throws FileNotFoundException {
         FileReader inputFile = new FileReader("customerList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String cuInfo = parser.nextLine();
 
-            String[] info = cuInfo.split(",");
+            String[] info = cuInfo.split(",",7);
             String CID = info[0];
             String PWD = info[1];
             String FN = info[2];
@@ -159,12 +189,15 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the hall List from file into system and generate an arrayList of hall objects.
+     * */
     public void readHallFile() throws FileNotFoundException {
         FileReader inputFile = new FileReader("hallList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String hallInfo = parser.nextLine();
-            String[] info = hallInfo.split(",");
+            String[] info = hallInfo.split(",",11);
             String HID = info[0];
             String name = info[1];
             String OID = info[2];
@@ -182,13 +215,16 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the Owner List from file into system and generate an arrayList of owner objects.
+     * */
     public void readOwnerFile() throws FileNotFoundException {
         FileReader inputFile = new FileReader("ownerList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String ownerInfo = parser.nextLine();
 
-            String[] info = ownerInfo.split(",");
+            String[] info = ownerInfo.split(",",6);
             String UID = info[0];
             String PWD = info[1];
             String FN = info[2];
@@ -200,12 +236,15 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the Quotation List from file into system and generate an arrayList of quotation objects.
+     * */
     public void readQuotationFile() throws FileNotFoundException {
         FileReader inputFile = new FileReader("quotationList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String quotaInfo = parser.nextLine();
-            String[] info = quotaInfo.split(",");
+            String[] info = quotaInfo.split(",",13);
             StringBuffer qif = new StringBuffer();
             String attendence = info[0];
             String cater = info[1];
@@ -241,12 +280,15 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the Discount List from file into system and generate an arrayList of discount objects.
+     * */
     public void readDiscountFile() throws FileNotFoundException{
         FileReader inputFile = new FileReader("discountList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String quotaInfo = parser.nextLine();
-            String[] info = quotaInfo.split(",");
+            String[] info = quotaInfo.split(",",2);
             String pn = info[0];
             double pr = Double.parseDouble(info[1]);
             Discount nd = new Discount(pn, pr);
@@ -254,12 +296,15 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reads the Concession List from file into system and generate an arrayList of concession objects.
+     * */
     public void readConcession() throws FileNotFoundException{
         FileReader inputFile = new FileReader("concessionList.txt");
         Scanner parser = new Scanner(inputFile);
         while (parser.hasNextLine()) {
             String quotaInfo = parser.nextLine();
-            String[] info = quotaInfo.split(",");
+            String[] info = quotaInfo.split(",",2);
             String toc = info[0];
             double pr = Double.parseDouble(info[1]);
             Concession nc = new Concession(toc, pr);
@@ -267,6 +312,9 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Writes the arrayList of booking objects from system into Booking List file.
+     * */
     public void writeToBookingFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("bookingList.txt");
         Iterator<Booking> it = listOfBookings.iterator();
@@ -277,6 +325,10 @@ public class DataHandler {
         outputFile.close();
     }
 
+
+    /**
+     * Writes the arrayList of customer objects from system into Customer List file.
+     * */
     public void writeToCustomerFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("customerList.txt");
         Iterator<Customer> it = listOfCustomers.iterator();
@@ -287,6 +339,9 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Writes the arrayList of hall objects from system into Hall List file.
+     * */
     public void writeToHallFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("hallList.txt");
         Iterator<Hall> it = listOfHalls.iterator();
@@ -297,6 +352,9 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Writes the arrayList of owner objects from system into Owner List file.
+     * */
     public void writeToOwnerFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("ownerList.txt");
         Iterator<Owner> it = listOfOwners.iterator();
@@ -307,6 +365,9 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Writes the arrayList of quotation objects from system into Quotation List file.
+     * */
     public void writeToQuotationFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("quotationList.txt");
         Iterator<Quotation> it = listOfQuotations.iterator();
@@ -317,6 +378,9 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Writes the arrayList of discount objects from system into Discount List file.
+     * */
     public void writeToDiscountFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("discountList.txt");
         Iterator<Discount> it = listOfDiscounts.iterator();
@@ -327,6 +391,9 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Writes the arrayList of concssion objects from system into Concession List file.
+     * */
     public void writeToConcessionFile() throws FileNotFoundException{
         PrintWriter outputFile = new PrintWriter("concessionList.txt");
         Iterator<Concession> it = listOfConcessions.iterator();
@@ -337,6 +404,11 @@ public class DataHandler {
         outputFile.close();
     }
 
+    /**
+     * Reads all lists from files into system and generate all array list of objects
+     *
+     * @return the state about initializing successfully or not
+     * */
     public boolean initialList() {
         try {
             readHallFile();
@@ -352,6 +424,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Write all array list of objects from system into files
+     *
+     * @return the state about updating successfully or not
+     * */
     public boolean updateList(){
         try{
             writeToCustomerFile();
@@ -364,11 +441,15 @@ public class DataHandler {
             return true;
         }
         catch (FileNotFoundException e) {
+            System.out.println("Write to file Error...");
             return false;
         }
 
     }
 
+    /**
+     * Clears all lists of objects in the memory.
+     * */
     public void cleanList(){
         listOfCustomers.clear();
         listOfConcessions.clear();

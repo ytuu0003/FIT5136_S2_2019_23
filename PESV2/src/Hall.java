@@ -1,93 +1,11 @@
-//public class Hall {
-//    private String hallName;
-//    private String desc;
-//    private String fullAddress;
-//    private String contact;
-//    public boolean caterService;
-//    private String photoLink;
-//    private int capacity;
-//
-//    public Hall(){
-//        hallName = "";
-//        desc = "";
-//        fullAddress = "";
-//        contact = "";
-//        caterService = false;
-//        photoLink = "";
-//        capacity = 0;
-//    }
-//
-//    public Hall(String newName, String newDesc, String newAddress, String newContact, boolean newCater, String newPhLink, int newCapacity){
-//        hallName = newName;
-//        desc = newDesc;
-//        fullAddress = newAddress;
-//        contact = newContact;
-//        caterService = newCater;
-//        photoLink = newPhLink;
-//        capacity = newCapacity;
-//    }
-//
-//    public String getName(){
-//        return hallName;
-//    }
-//
-//    public String getDesc(){
-//        return desc;
-//    }
-//
-//    public String getAddress(){
-//        return fullAddress;
-//    }
-//
-//    public String getContact(){
-//        return contact;
-//    }
-//
-//    public String getPhotoLink(){
-//        return photoLink;
-//    }
-//
-//    public int getCapacity(){
-//        return capacity;
-//    }
-//
-//    public boolean isCaterService() {
-//        return caterService;
-//    }
-//
-//    public void setName(String newName){
-//        hallName = newName;
-//    }
-//
-//    public void setDesc(String newDesc){
-//        desc = newDesc;
-//    }
-//
-//    public void setAddress(String newAddress){
-//        fullAddress = newAddress;
-//    }
-//
-//    public void setPhotoLink(String newPhLink){
-//        photoLink = newPhLink;
-//    }
-//
-//    public void setCatering(boolean newCater){
-//        caterService = newCater;
-//    }
-//    public void setCapacity(int newCapacity){
-//        capacity = newCapacity;
-//    }
-//
-//    public String toString(){
-//        String information = "\nHall Name: " + hallName + "\nDescription: " + desc
-//                + "\nAddress: " + fullAddress + "\nContact Info: " + contact + "\nCatering Provided: "
-//                + caterService + "\nPhoto Link: " + photoLink + "\nCapacity: " + capacity;
-//        return information;
-//    }
-//}
-
 import com.sun.jdi.PrimitiveValue;
-
+/**
+ * This Hall Class represents a hall object in the system.
+ * It used to generate a hall object.
+ *
+ * @author Yushan Tu, Yaohan Li and Xinyue Huang
+ * @version 1.0 (19 Oct 2019)
+ * */
 public class Hall {
     private String hallID;
     private String ownerId;
@@ -101,6 +19,11 @@ public class Hall {
     private int capacity;
     private double price;
 
+    /**
+     * Creates a hall with default values on hall id, hall name, owner id, description, full address, contact,
+     * type of occasion, catering service, photoLink, capacity and price.
+     *
+     * */
     public Hall(){
         hallID = "";
         hallName = "";
@@ -115,6 +38,21 @@ public class Hall {
         price = 0.0;
     }
 
+    /**
+     * Creates a hall with hall id, hall name, owner id, description, full address, contact,
+     * type of occasion, catering service, photoLink, capacity and price.
+     *
+     * @param  HID The id of a hall.
+     * @param  newName The name of a hall.
+     * @param  OID The owner id of this hall.
+     * @param  newDesc The description of this hall.
+     * @param  newAddress The address of this hall.
+     * @param  newContact The contact information of this hall.
+     * @param  TOC The type of accasion provided by this hall.
+     * @param  newCater The catering service provided by this hall.
+     * @param  newPhLink  The photo link of this hall.
+     * @param  pr The estimate price of this hall.
+     * */
     public Hall(String HID, String newName, String OID, String newDesc, String newAddress, String newContact, String TOC, boolean newCater, String newPhLink, int newCapacity, double pr){
         hallID = HID;
         hallName = newName;
@@ -129,114 +67,210 @@ public class Hall {
         price = pr;
     }
 
-    public String getFullAddress() {
-        return fullAddress;
-    }
 
-    public String getHallName() {
-        return hallName;
-    }
-
+    /**
+     * Gets the owner id who this hall belongs
+     *
+     * @return The String object that contains the owner id who this hall belongs
+     * */
     public String getOwnerId() {
         return ownerId;
     }
 
+    /**
+     * Gets the catering service of this hall
+     *
+     * @return A boolean value which contains the catering service information.
+     * */
     public boolean isCaterService() {
         return caterService;
     }
 
+    /**
+     * Gets the type of occasion provided by this hall.
+     *
+     * @return A String object which contains the type of occasion provided by this hall.
+     * */
     public String getTypeOfOccasion() {
         return typeOfOccasion;
     }
 
-    public void setCaterService(boolean caterService) {
-        this.caterService = caterService;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
-    }
-
-    public void setHallName(String hallName) {
-        this.hallName = hallName;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public void setTypeOfOccasion(String typeOfOccasion) {
-        this.typeOfOccasion = typeOfOccasion;
-    }
-
+    /**
+     * Gets the id of hall
+     *
+     * @return A String object which contains the hall id information.
+     * */
     public String getHallID(){
         return hallID;
     }
 
+    /**
+     * Gets the name of a hall
+     *
+     * @return The String object that contains the name of the hall
+     * */
     public String getName(){
         return hallName;
     }
 
+    /**
+     * Gets the description of a hall
+     *
+     * @return A String object which contains the hall description information.
+     * */
     public String getDesc(){
         return desc;
     }
 
+    /**
+     * Gets the address of a hall
+     *
+     * @return The String object that contains the address of the hall
+     * */
     public String getAddress(){
         return fullAddress;
     }
 
+    /**
+     * Gets the contact information of a user who owns this hall
+     *
+     * @return The String object that contains the contact information of a user who owns this hall
+     * */
     public String getContact(){
         return contact;
     }
 
+    /**
+     * Gets the photo link of this hall
+     *
+     * @return The String object that contains the photo link of this hall
+     * */
     public String getPhotoLink(){
         return photoLink;
     }
 
+    /**
+     * Gets the capacity of this hall
+     *
+     * @return A String object which contains the capacity of this hall.
+     * */
     public int getCapacity(){
         return capacity;
     }
 
+    /**
+     * Gets the price of this hall
+     *
+     * @return A double value which contains the price information.
+     * */
     public double getPrice(){
         return price;
     }
 
+    /**
+     * Sets the contact information which belongs to owner which has this hall.
+     *
+     * @param contact the contact information which belongs to owner which has this hall.
+     * */
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    /**
+     * Sets the owner id which has this hall.
+     *
+     * @param ownerId the owner id information
+     * */
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    /**
+     * Sets the type of occasion provided by this hall.
+     *
+     * @param typeOfOccasion the type of occasion provided by this hall.
+     * */
+    public void setTypeOfOccasion(String typeOfOccasion) {
+        this.typeOfOccasion = typeOfOccasion;
+    }
+
+    /**
+     * Sets the id of this hall.
+     *
+     * @param HID the id of this hall
+     * */
     public void setHallID(String HID) {
         hallID = HID;
     }
 
+    /**
+     * Sets the name of this hall.
+     *
+     * @param newName the name of this hall
+     * */
     public void setName(String newName){
         hallName = newName;
     }
 
+    /**
+     * Sets the description of this hall.
+     *
+     * @param newDesc the description of this hall
+     * */
     public void setDesc(String newDesc){
         desc = newDesc;
     }
 
+    /**
+     * Sets the address of this hall.
+     *
+     * @param newAddress the address of this hall
+     * */
     public void setAddress(String newAddress){
         fullAddress = newAddress;
     }
 
+    /**
+     * Sets the photo link of this hall.
+     *
+     * @param newPhLink the photo link of this hall
+     * */
     public void setPhotoLink(String newPhLink){
         photoLink = newPhLink;
     }
 
+    /**
+     * Sets the catering service of this hall.
+     *
+     * @param newCater the catering service of this hall
+     * */
     public void setCatering(boolean newCater){
         caterService = newCater;
     }
 
+    /**
+     * Sets the capacity of this hall.
+     *
+     * @param newCapacity the capacity of this hall
+     * */
     public void setCapacity(int newCapacity){
         capacity = newCapacity;
     }
 
+    /**
+     * Sets the price of this hall.
+     *
+     * @param pr the price of this hall
+     * */
     public void setPrice(double pr) {
         price = pr;
     }
 
+    /**
+     * Returns a string information of a particular hall for display
+     *
+     * @return  A String object that contains the hall details information.
+     * */
     public String display(){
         String information = "\nHall Name: " + hallName + "\nDescription: " + desc
                 + "\nAddress: " + fullAddress + "\nContact Info: " + contact + "\nCatering Provided: "
@@ -244,20 +278,31 @@ public class Hall {
         return information;
 
     }
-        public String toString(){
+
+    /**
+     * Returns a string information of a particular hall for display
+     *
+     * @return  A String object that contains the hall details information.
+     * */
+    public String toString(){
         String information = "\nHall Name: " + hallName + "\nDescription: " + desc
                 + "\nAddress: " + fullAddress + "\nContact Info: " + contact + "\nCatering Provided: "
                 + caterService + "\nPhoto Link: " + photoLink + "\nCapacity: " + capacity;
         return information;
     }
 
+    /**
+     * Returns a string information of a particular hall for display in the database(file)
+     *
+     * @return  A String object that contains the hall details information.
+     * */
     public String toStringItem(){
         StringBuffer dm = new StringBuffer();
         dm.append(hallID);
         dm.append(",");
-        dm.append(ownerId);
+        dm.append(hallName );
         dm.append(",");
-        dm.append(hallName);
+        dm.append(ownerId);
         dm.append(",");
         dm.append(desc);
         dm.append(",");

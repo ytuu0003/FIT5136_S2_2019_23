@@ -1,5 +1,12 @@
 import java.lang.Math;
 
+/**
+ * This Quotation Class represents a quotation object in the system.
+ * It used to generate a quotation object.
+ *
+ * @author XuShan Tu, Yaohan Li and Xinyue Huang
+ * @version 1.0 (19 Oct 2019)
+ * */
 public class Quotation {
     private String quotationInfo;
     private double[] priceList = new double[3];
@@ -8,6 +15,11 @@ public class Quotation {
     private String customerId;
     private int state;
 
+    /**
+     * Creates a quotation with default values on quotation information, price list, owner id,
+     * hall id, customer id and its state
+     *
+     * */
     public Quotation(){
         quotationInfo = "";
         priceList = new double[]{0.0, 0.0, 0.0};
@@ -17,45 +29,115 @@ public class Quotation {
         state = 0;
     }
 
+    /**
+     * Creates a quotation with quotation information, price list, owner id,
+     * hall id, customer id and its state
+     *
+     * @param  newQuotationInfo The displayed information of this quotation.
+     * @param  newPriceList The price, discount and deposit information of this quotation.
+     * @param  newOwnerId TThe owner id who provides this quotation.
+     * @param  newHallId The hall id on this quotation.
+     * @param  newCustomerId The customer id who requests this quotation.
+     * @param  newState The provided state of this quotation.
+     * */
+    public Quotation(String newQuotationInfo, double[] newPriceList, String newOwnerId, String newHallId, String newCustomerId, int newState){
+        quotationInfo = newQuotationInfo;
+        priceList = newPriceList;
+        ownerId = newOwnerId;
+        hallId = newHallId;
+        customerId = newCustomerId;
+        state = newState;
+    }
 
+    /**
+     * Gets the displayed information of this quotation.
+     *
+     * @return A String object which contains displayed information of this quotation.
+     * */
     public String getQuotationInfo(){
         return quotationInfo;
     }
 
+    /**
+     * Gets the specific price information of this quotation, such as total price, discount and deposit.
+     *
+     * @return A String object which contains the specific price information of this quotation.
+     * */
     public double getPriceList(int index){
         return priceList[index];
     }
 
+    /**
+     * Gets the state of this quotation.
+     *
+     * @return A String object which contains state of this quotation.
+     * */
     public int getState(){
         return state;
     }
 
+    /**
+     * Gets the hall id information of this quotation.
+     *
+     * @return A String object which contains hall id information of this quotation.
+     * */
     public String getHallId(){
         return hallId;
     }
 
+    /**
+     * Gets the customer id of this quotation.
+     *
+     * @return A String object which contains customer id of this quotation.
+     * */
     public String getCustomerId(){
         return customerId;
     }
 
+    /**
+     * Gets the owner id information of this quotation.
+     *
+     * @return A String object which contains owner id information of this quotation.
+     * */
     public String getOwnerId(){
         return ownerId;
     }
 
+    /**
+     * Sets the quotation foundational information of a particular quotation.
+     *
+     * @param newInfo the quotation foundational information
+     * */
     public void setQuotationInfo(String newInfo){
         quotationInfo = newInfo;
     }
 
+    /**
+     * Sets the quotation price list information of a particular quotation.
+     *
+     * @param price the quotation foundational information.
+     * @param  discount the discount which this quotation could get
+     * */
     public void setPriceList(double price, double discount){
         priceList[0] = price;
         priceList[1] = discount;
         priceList[2] = Math.round((price * (1 - discount) * 0.1) * 100.0) / 100.0;
     }
 
+    /**
+     * Sets the quotation state of a particular quotation.
+     *
+     * @param newState the quotation state
+     * */
     public void setState(int newState){
         state = newState;
     }
 
+    /**
+     * Returns a string information of a particular quotation for display on the screen
+     *
+     * @return  A String object that contains the quotation details information.
+     * */
     public String displayQuotationInfo(){
         String info = "";
         info = formatQuotationInfo() + "\nOwner ID: " + ownerId + "\nHall ID: " + hallId + "\nCustomer ID: "
@@ -63,10 +145,21 @@ public class Quotation {
         return info;
     }
 
+    /**
+     * Splits the basic information which contains attendance number, catering service, date and time, deposit, purpose
+     * and total price.
+     *
+     * @return  An array of String objects that contains the quotation foundational information.
+     * */
     public String[] splitQuotationInfo(){
         return quotationInfo.split(",",6);
     }
 
+    /**
+     * Reformats a string information of a particular quotation for display on the screen
+     *
+     * @return  A String object that contains the quotation foundational information.
+     * */
     public String formatQuotationInfo(){
         String quotationInfoFormat = "";
         String[] quotationFields = new String[6];
@@ -84,37 +177,11 @@ public class Quotation {
 
     }
 
-
-//    Hall hall1 = new Hall("hall1","desc1","addr1","12323123",true,"wefaf.com",43);
-//    Hall hall2 = new Hall("hall2","desc2","addr2","12323123",false,"wefaf.com",25);
-//    public void testFile1(){
-//        quotationInfo = "50,true,20191111,110.0,wedding,,990.0";
-//        priceList = new double[]{.0, 0.0, 0.0};
-//        setPriceList(500.0, 0.85);
-//        ownerId = "201";
-//        hallId = "10";
-//        customerId = "101";
-//        state = 1;
-//    }
-//
-//    public void testFile2(){
-//        quotationInfo = "100,false,20191201,120.0,wedding,,1010.0";
-//        priceList = new double[]{.0, 0.0, 0.0};
-//        setPriceList(500.0, 0.85);
-//        ownerId = "202";
-//        hallId = "10";
-//        customerId = "101";
-//        state = 0;
-//    }
-    public Quotation(String newQuotationInfo, double[] newPriceList, String newOwnerId, String newHallId, String newCustomerId, int newState){
-        quotationInfo = newQuotationInfo;
-        priceList = newPriceList;
-        ownerId = newOwnerId;
-        hallId = newHallId;
-        customerId = newCustomerId;
-        state = newState;
-    }
-
+    /**
+     * Returns a string information of a particular quotation for display into database
+     *
+     * @return  A String object that contains the quotation details information.
+     * */
     public String toStringItem(){
         StringBuffer dm = new StringBuffer();
         dm.append(quotationInfo);

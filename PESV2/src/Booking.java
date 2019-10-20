@@ -4,7 +4,10 @@ public class Booking {
     private String hallId;
     private String purpose;
     private int attendance;
-    private String dateAndTime;
+    //****************Yushan tu 19102019************************
+    //private String dateAndTime;
+    private int dateAndTime;
+    //***********************************************************
     private boolean catering;
     private double deposit;
     private double totalPrice;
@@ -17,14 +20,14 @@ public class Booking {
         purpose = "";
 
         attendance = 0;
-        dateAndTime = "";
+        dateAndTime = 0;
         catering = false;
         deposit = 0.0;
         totalPrice = 0.0;
         review = "";
     }
 
-    public Booking(String BID, String CID, String HID, String purp, int atted, String dnt, boolean cat, double dp, double tp, String rw){
+    public Booking(String BID, String CID, String HID, String purp, int atted, int dnt, boolean cat, double dp, double tp, String rw){
         bookingID = BID;
         customerId = CID;
         hallId = HID;
@@ -57,7 +60,7 @@ public class Booking {
         return attendance;
     }
 
-    public String DateandTime(){
+    public int getDateAndTime(){
         return dateAndTime;
     }
 
@@ -97,7 +100,7 @@ public class Booking {
         attendance = atted;
     }
 
-    public void setDateAndTime(String dnt){
+    public void setDateAndTime(int dnt){
         dateAndTime = dnt;
     }
 
